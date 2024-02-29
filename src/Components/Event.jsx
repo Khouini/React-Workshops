@@ -25,7 +25,7 @@ export default function Event(props) {
         />
         <Card.Body>
           <Card.Title>
-            <Link to={`/events/details/${e.name}`}>{e.name}</Link>
+            <Link to={`/events/details/${e.id}`}>{e.name}</Link>
           </Card.Title>
 
           <Card.Text>Price: {e.price}</Card.Text>
