@@ -1,9 +1,13 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import eventService from "../services/api";
 export default function Event(props) {
+  const navigate = useNavigate();
   const [e, setEvent] = useState(props.event);
+
+  const {handleDelete}=props;
   const changeLike = () => {
     setEvent((pe) => ({ ...pe, like: !pe.like }));
   };
@@ -15,6 +19,8 @@ export default function Event(props) {
       nbParticipants: pe.nbParticipants + 1,
     }));
   };
+
+  
 
   return (
     <>
@@ -37,6 +43,9 @@ export default function Event(props) {
           <Button onClick={bookEvent} disabled={e.nbTickets === 0}>
             Buy
           </Button>
+          <Button
+            onClick={(d) => handleDelete(d, e)}
+          >Delete</Button>
         </Card.Body>
       </Card>
     </>

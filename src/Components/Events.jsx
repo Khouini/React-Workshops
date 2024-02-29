@@ -34,12 +34,20 @@ export default function Events(props) {
       console.log("unmounting");
     };
   }, []);
+  const handleDelete = async (d, e) => {
+    d.preventDefault()
+    console.log("deleting event", e);
+    const response = await eventService.deleteEvent(e.id);
+    console.log(response.data);
+    alert("Event deleted successfully");
+    setListEvent(listEvent.filter((ev) => ev.id !== e.id));
+  };
   return (
     <>
       {showWelcome && <Alert variant="success">Welcome</Alert>}
       <Row xs={1} md={3}>
         {listEvent?.map((e, i) => {
-          return <Event key={i} event={e} fnAlert={modifAlert} />;
+          return <Event key={i} event={e} fnAlert={modifAlert} handleDelete={handleDelete}/>;
         })}
       </Row>
       {showAlert && <Alert variant="success">You have booked an event</Alert>}

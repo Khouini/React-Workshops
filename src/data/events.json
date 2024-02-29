@@ -19,26 +19,6 @@
       "nbTickets": 4,
       "nbParticipants": 30,
       "like": false
-    },
-    {
-      "id": 3,
-      "name": "Journées cinématographiques de Carthage (JCC)",
-      "description": "Le lorem ipsum est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page",
-      "img": "event3.jpg",
-      "price": 7,
-      "nbTickets": 20,
-      "nbParticipants": 35,
-      "like": false
-    },
-    {
-      "name": "name 3",
-      "description": "desc 3",
-      "price": "11",
-      "nbTickets": "10",
-      "nbParticipants": "20",
-      "img": "event2.jpg",
-      "like": false,
-      "id": 6
     }
   ]
 }
