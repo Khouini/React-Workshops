@@ -1,0 +1,1 @@
+ShouldComponentUpdate => if true renrender, else dont rerender
