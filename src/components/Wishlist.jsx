@@ -12,11 +12,13 @@ export default function Wishlist() {
     const handleDecrement = (event) => {
         dispatch(decrement(event));
     };
+    const total = wishlist.reduce((acc, curr) => acc + curr.nbParticipants * curr.price, 0);
 
     return (
-        <div>
-            {wishlist.map(event => (
+        <div className='container'>
+            {wishlist.map((event, index) => (
                 <div className="wishlist-item" key={event.id}>
+                    <h3>event: {index + 1}</h3>
                     <img
                         height={100}
                         src={"/images/" + event.img} alt={event.name} />
@@ -36,9 +38,10 @@ export default function Wishlist() {
                             <button onClick={() => handleIncrement(event)}>+</button>
                         </div>
                     </div>
-                    <button>Add to Cart</button>
+                    <br />
                 </div>
             ))}
+            <h4>Total: {total}</h4>
         </div>
     );
 };
