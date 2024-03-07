@@ -27,6 +27,13 @@ export default function NavigationBar() {
           >
             Add New Event
           </Nav.Link>
+          <Nav.Link
+            as={NavLink}
+            to="/wishlist"
+            style={({ isActive }) => (!isActive ? active : undefined)}
+          >
+            Wishlist
+          </Nav.Link>
         </Nav>
       </Container>
     </Navbar>

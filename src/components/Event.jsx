@@ -61,6 +61,13 @@ export default function Event(props) {
           >
             Delete
           </Button>
+          <Button
+            variant="warning"
+            // onClick={() => props.onDelete(event.id)}
+            className="mx-1"
+          >
+            Add To Wishlist
+          </Button>
         </Card.Body>
       </Card>
     </Col>

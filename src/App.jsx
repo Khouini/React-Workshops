@@ -4,6 +4,7 @@ import "./App.css";
 import NavigationBar from "./components/NavigationBar";
 import { useDispatch } from "react-redux";
 import { fetchEvents } from "./redux/slices/eventsSlice";
+import { Wishlist } from "./components/Wishlist";
 // import Events from "./components/Events";
 const Events = React.lazy(() => import("./components/Events"));
 // import EventAddForm from "./components/EventForm";
@@ -20,10 +21,11 @@ function App() {
       <NavigationBar />
       <Routes>
         <Route path="/events">
-          <Route index element={<Events />} loader={dispatch(fetchEvents())}/>
+          <Route index element={<Events />} loader={dispatch(fetchEvents())} />
           <Route path="add" element={<EventAddForm />} />
-          <Route path='update/:id' element={<EventUpdateForm />}/>
+          <Route path='update/:id' element={<EventUpdateForm />} />
           <Route path=":id" element={<EventDetails />} />
+          <Route path="wishlist" element={<Wishlist />}></Route>
         </Route>
         <Route
           path="*"
