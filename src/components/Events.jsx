@@ -3,19 +3,24 @@ import Event from "./Event";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
 import { deleteEvent, getallEvents } from "../services/api";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEventReducer, selectEvents } from "../redux/slices/eventsSlice";
 
 export default function Events() {
-  const [eventList, setEventList] = useState([]);
+  //const [eventList, setEventList] = useState([]);
+  //const [eventList , error ] = useSelector(selectEvents);
+  const dispatch = useDispatch();
+  const eventList = useSelector( state => state.events.events)
   const [isWelcome, setIsWelcome] = useState(true);
   const [isShowBuyAlert, setIsShowBuyAlert] = useState(false);
 
-  useEffect(() => {
-    const fetchEvents = async () => {
-      const eventsResult = await getallEvents();
-      setEventList(eventsResult.data);
-    };
-    fetchEvents();
-  }, []);
+  // useEffect(() => {
+  //   const fetchEvents = async () => {
+  //     const eventsResult = await getallEvents();
+  //     setEventList(eventsResult.data);
+  //   };
+  //   fetchEvents();
+  // }, []);
 
   useEffect(() => {
     const isWelcomeTimeout = setTimeout(() => {
@@ -36,7 +41,8 @@ export default function Events() {
 
   const handleDelete = async (eventId) => {
     await deleteEvent(eventId);
-    setEventList(eventList.filter((eventItem) => eventItem.id !== eventId));
+   //setEventList(eventList.filter((eventItem) => eventItem.id !== eventId));
+    dispatch(deleteEventReducer(eventId));
   };
 
   return (

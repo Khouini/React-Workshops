@@ -2,9 +2,12 @@ import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { addEvent } from "../services/api";
+import { useDispatch } from "react-redux";
+import { addEventReducer } from "../redux/slices/eventsSlice";
 
 export default function EventAddForm() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [eventItem, setEventItem] = useState({
     name: "",
     description: "",
@@ -24,6 +27,7 @@ export default function EventAddForm() {
 
   const addNewEvent = async () => {
     const eventResult = await addEvent(eventItem);
+    dispatch(addEventReducer(eventResult.data));
     if (eventResult.status === 201) {
       navigate("/events");
     }
