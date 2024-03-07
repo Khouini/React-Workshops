@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectWishlist } from '../redux/slices/wishlistSlice';
-import { increment, decrement } from '../redux/slices/wishlistSlice';
+import { increment, decrement, remove } from '../redux/slices/wishlistSlice';
 export default function Wishlist() {
     const dispatch = useDispatch();
     const wishlist = useSelector(selectWishlist);
@@ -11,6 +11,9 @@ export default function Wishlist() {
 
     const handleDecrement = (event) => {
         dispatch(decrement(event));
+    };
+    const hadnleRemove = (event) => {
+        dispatch(remove(event));
     };
     const total = wishlist.reduce((acc, curr) => acc + curr.nbParticipants * curr.price, 0);
 
@@ -37,6 +40,7 @@ export default function Wishlist() {
                             />
                             <button onClick={() => handleIncrement(event)}>+</button>
                         </div>
+                        <button onClick={() => hadnleRemove(event)}>Remove</button>
                     </div>
                     <br />
                 </div>
@@ -44,4 +48,4 @@ export default function Wishlist() {
             <h4>Total: {total}</h4>
         </div>
     );
-};
+}
