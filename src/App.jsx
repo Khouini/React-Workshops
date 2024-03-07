@@ -4,7 +4,7 @@ import "./App.css";
 import NavigationBar from "./components/NavigationBar";
 import { useDispatch } from "react-redux";
 import { fetchEvents } from "./redux/slices/eventsSlice";
-import { Wishlist } from "./components/Wishlist";
+import Wishlist from "./components/Wishlist";
 // import Events from "./components/Events";
 const Events = React.lazy(() => import("./components/Events"));
 // import EventAddForm from "./components/EventForm";

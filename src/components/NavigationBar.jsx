@@ -29,7 +29,7 @@ export default function NavigationBar() {
           </Nav.Link>
           <Nav.Link
             as={NavLink}
-            to="/wishlist"
+            to="/events/wishlist"
             style={({ isActive }) => (!isActive ? active : undefined)}
           >
             Wishlist
