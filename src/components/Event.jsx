@@ -24,43 +24,40 @@ export default function Event(props) {
   };
 
   return (
-    <Col style={{ width: "20%" }} className="m-2">
+    <Col style={{ maxWidth: "20%" }} className="m-2">
       <Card>
         <Card.Img
           variant="top"
-          style={{ height: 400 }}
+          style={{ height: 300, objectFit: "cover" }}
           src={`/images/${!!event.nbTickets ? event.img : "sold_out.png"}`}
         />
         <Card.Body>
-          <NavLink to={`${event.id}`}>
+          <NavLink to={`${event.id}`} style={{ textDecoration: "none" }}>
             <Card.Title>{event.name}</Card.Title>
           </NavLink>
-          <Card.Text>Price : {event.price}</Card.Text>
-          <Card.Text>Number of tickets : {event.nbTickets}</Card.Text>
-          <Card.Text>Number of participants : {event.nbParticipants}</Card.Text>
+          <Card.Text>Price: {event.price}</Card.Text>
+          <Card.Text>Tickets available: {event.nbTickets}</Card.Text>
+          <Card.Text>Participants: {event.nbParticipants}</Card.Text>
           <Button variant="info" onClick={handleLike}>
             {event.like ? "Dislike" : "Like"}
           </Button>
           <Button
             variant="primary"
             onClick={handleBuy}
-            disabled={!!event.nbTickets ? false : true}
-            className="mx-5"
+            disabled={!event.nbTickets}
+            className="mx-3"
           >
-            Book an event
+            Book Now
           </Button>
-          <Button variant="success">
-            <Link
-              to={`/events/update/${event.id}`}
-              style={{ textDecoration: "none", color: "white" }}
-            >
+          <Button variant="success" className="mx-1">
+            <Link to={`/events/update/${event.id}`} style={{ textDecoration: "none", color: "white" }}>
               Update
             </Link>
           </Button>
           <Button
             variant="danger"
             onClick={() => props.onDelete(event.id)}
-            className="mx-5"
+            className="mx-1"
           >
             Delete
           </Button>

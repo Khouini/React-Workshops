@@ -13,7 +13,7 @@ export default function EventDetails() {
       setEventItem(eventResult.data);
     };
     fetchEvent(id);
-  }, []);
+  }, [id]);
 
   if (!eventItem) {
     return <h1>Not Found</h1>;
@@ -23,12 +23,13 @@ export default function EventDetails() {
     <Container style={{ marginTop: "30px" }}>
       <Row>
         <Col md={4}>
-          <Card.Img
-            variant="top"
-            src={`/images/${eventItem.img}`}
-            alt="Product Img"
-            height="300"
-          />
+          <Card>
+            <Card.Img
+              variant="top"
+              src={`/images/${eventItem.img}`}
+              alt="Event Image"
+            />
+          </Card>
         </Col>
         <Col md={8}>
           <Row>
@@ -40,16 +41,16 @@ export default function EventDetails() {
             <Col md={12}>
               <h5>Description</h5>
             </Col>
-            <Col>
-              <p style={{ marginLeft: "50px" }}>{eventItem.description}</p>
+            <Col md={12}>
+              <p>{eventItem.description}</p>
             </Col>
           </Row>
           <Row>
             <Col md={12}>
               <h5>Price</h5>
             </Col>
-            <Col>
-              <p style={{ marginLeft: "50px" }}>{eventItem.price} DT</p>
+            <Col md={12}>
+              <p>{eventItem.price} DT</p>
             </Col>
           </Row>
         </Col>

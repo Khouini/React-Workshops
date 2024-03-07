@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 export const wishlistSlice = createSlice({
-  name: "wishlist",
+  name: 'wishlist',
   initialState: {
     wishlist: [],
   },
   reducers: {
     increment: (state, action) => {
       const payload = action.payload;
-      const index = state.wishlist.findIndex((item) => item.id === payload.id);
+      const index = state.wishlist.findIndex(item => item.id === payload.id);
       if (index !== -1) {
         state.wishlist[index].nbParticipants += 1;
       } else {
@@ -19,7 +19,7 @@ export const wishlistSlice = createSlice({
     },
     decrement: (state, action) => {
       const payload = action.payload;
-      const index = state.wishlist.findIndex((item) => item.id === payload.id);
+      const index = state.wishlist.findIndex(item => item.id === payload.id);
       if (index !== -1) {
         state.wishlist[index].nbParticipants -= 1;
         if (state.wishlist[index].nbParticipants === 0) {
@@ -29,9 +29,9 @@ export const wishlistSlice = createSlice({
     },
     remove: (state, action) => {
       const payload = action.payload;
-      state.wishlist = state.wishlist.filter((item) => item.id !== payload.id);
+      state.wishlist = state.wishlist.filter(item => item.id !== payload.id);
     },
-    empty: (state) => {
+    empty: state => {
       state.wishlist = [];
     },
   },
@@ -41,24 +41,15 @@ export const { increment, decrement, remove, empty } = wishlistSlice.actions;
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state) => state.wishlist.value)`
 export const selectCountOf = (state, payload) => {
-  return (
-    state.wishlist.wishlist?.find((item) => item.id === payload.id)
-      ?.nbParticipants || 0
-  );
+  return state.wishlist.wishlist?.find(item => item.id === payload.id)?.nbParticipants || 0;
 };
-export const selectCountAll = (state) => {
-  return state.wishlist.wishlist?.reduce(
-    (acc, curr) => acc + curr.nbParticipants,
-    0
-  );
+export const selectCountAll = state => {
+  return state.wishlist.wishlist?.reduce((acc, curr) => acc + curr.nbParticipants, 0);
 };
-export const selectTotal = (state) => {
-  return state.wishlist.wishlist?.reduce(
-    (acc, curr) => acc + curr.nbParticipants * curr.price,
-    0
-  );
+export const selectTotal = state => {
+  return state.wishlist.wishlist?.reduce((acc, curr) => acc + curr.nbParticipants * curr.price, 0);
 };
-export const selectWishlist = (state) => {
+export const selectWishlist = state => {
   return state.wishlist.wishlist;
 };
 export default wishlistSlice.reducer;
